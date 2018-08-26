@@ -2,7 +2,7 @@
 <html>
 <head>
 	<title>SAKEC-e-CHAAT</title>
-
+	<meta name="viewport" content="width=device-width, inital-scale=1">
 	<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="assets/css/materialize.min.css">
 	<link rel="stylesheet" type="text/css" href="assets/css/nouislider.min.css">
@@ -11,22 +11,58 @@
 </head>
 <body id="index">
 	<a href="javascript:" id="return-to-top"><i class="material-icons">navigation</i></a>
+	<a href="#cart" id="cart" class="blue lighten-1 hide user">
+		<i class="fa fa-shopping-cart"></i>
+		<span id="prods-in-cart-count">0</span>
+		<ul class="hide" id="prods-to-card-id">
+		</ul>
+	</a>
 	<header class="navbar-fixed z-depth-3" id="">
 		<nav class="white lighten-4" role="navigation">
 			<div class="nav-wrapper">
 				<a href="#" class="nav brand-logo"> SAKEC-e-CHAAT </a>
 				<a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+				<div class="right hide-on-med-and-down acc_area">
+					<div class="show guest" style="margin-top: -5px;">
+						<a href="#loginModal" class="modal-trigger btn blue blue lighten-2">Login</a>
+						<a href="#signupModal" class="modal-trigger btn blue lighten-2">Sign Up</a>
+					</div>
+					<div class="hide user">
+						<a class="btn blue lighten-2" style="margin-top: -5px">
+							<i class="fa fa-user" style="line-height: 0;"></i>
+							<span class="username"></span>
+						</a>
+						<a href="php/logout.php" class="btn blue lighten-2" style="margin-top: -5px">
+							<span id="logout">Logout</span>
+						</a>
+					</div>
+				</div>
 				<ul class="right hide-on-med-and-down">
-					<li><a href="#index" class="head-link">Home</a></li>
 					<li><a href="#products" class="head-link">Order</a></li>
 					<li><a href="#reviews" class="head-link">Reviews</a></li>
 					<li><a href="#contact-us" class="head-link">Contact us</a></li>
-				</ul> 
+				</ul>
 			</div>
 		</nav>		
 		<ul id="mobile-demo" class="sidenav">
-			<li><a href="#index" class="head-link">Home</a></li>
-			<li><a href="#about_us" class="head-link">Order</a></li>
+			<li>
+				<div class="acc_area">
+					<div class="show guest" style="margin-top: -5px;">
+						<a href="#loginModal" class="modal-trigger btn blue blue lighten-2">Login</a>
+						<a href="#signupModal" class="modal-trigger btn blue lighten-2">Sign Up</a>
+					</div>
+					<div class="hide user">
+						<a class="btn blue lighten-2" style="margin-top: -5px">
+							<i class="fa fa-user" style="line-height: 0;"></i>
+							<span class="username"></span>
+						</a>
+						<a href="php/logout.php" class="btn blue lighten-2" style="margin-top: -5px">
+							<span id="logout">Logout</span>
+						</a>
+					</div>
+				</div>
+			</li>
+			<li><a href="#products" class="head-link">Order</a></li>
 			<li><a href="#reviews" class="head-link">Reviews</a></li>
 			<li><a href="#contact-us" class="head-link">Contact us</a></li>
 		</ul>
@@ -35,37 +71,32 @@
 	<div class="section" id="home-section">
 		<div class="section-content">
 			<div class="row">
-				<h2 class="col s12 light" id="heading-title">SAKEC-e-CHAAT</h2>
+				<h2 class="col s12 light white-text" id="heading-title">SAKEC-e-CHAAT</h2>
 				<h5 class="col s12 light" id="heading-phrase">A modern way to eat chaat.</h5>
 			</div>
-			<div class="row" id="login-or-signup">
+			<!-- <div class="row" id="login-or-signup">
 				<h5><a href="#loginModal" class="white-text modal-trigger"><u>Login</u></a> | <a href="#signupModal" class="white-text modal-trigger"><u>Sign Up</u></a></h5>
-			</div>
+			</div> -->
 		</div>
 		<div id="landing-pg-img"></div>
 	</div>
 
 	<div class="section" id="products">
 		<div class="section-title">
-			<span>Jo Khana hai Kaho</span>
+			<span>Jo Khana hai Khao</span>
 		</div>
 		<div class="section-content">
 			<div class="row sub-section">
-				<div class="sub-section-title">Filter options</div>
+				<!-- <div class="sub-section-title">Filter options</div> -->
 				<div class="sub-section-content">
 					<div id="filters row">
-						<div class="filter-option col l4 s12">
-							<!-- Dropdown Trigger -->
-							<a class='dropdown-trigger btn' href='#' data-target='category'>Category</a>
-							<!-- Dropdown Structure -->
-							<ul id='category' class='dropdown-content'>
-								<li><a href="#!">one</a></li>
-								<li><a href="#!">two</a></li>
-								<li class="divider" tabindex="-1"></li>
-								<li><a href="#!">three</a></li>
-								<li><a href="#!"><i class="material-icons">view_module</i>four</a></li>
-								<li><a href="#!"><i class="material-icons">cloud</i>five</a></li>
-							</ul>
+						<div class="input-field filter-option col l4 s12">
+							<select>
+								<option value="" disabled selected>Categories</option>
+								<option value="1">Mumbai Chaats</option>
+								<option value="2">Lucknow Chaats</option>
+								<option value="3">Sab Kuch</option>
+							</select>
 						</div>
 						<div class="filter-option col l4 s12">
 							<div class="input-field col s12">
@@ -74,97 +105,106 @@
 								<label for="autocomplete-input">Autocomplete</label>
 							</div>
 						</div>
-						<div class="filter-option col l4 s12">
-							<br /><br />PriceRange
-							<form action="#">
-								<p class="range-field">
-									<input type="range" id="test5" min="0" max="100" />
-								</p>
-							</form>
-
+						<div class="input-field filter-option col l4 s12">
+							<p style="margin-top: 5px;">
+								<span class="left price-range-tag"><i class="fa fa-rupee"></i>50</span>
+								<span class="right price-range-tag"><i class="fa fa-rupee"></i>500</span>
+								<input type="range" id="test5" min="50" max="500" />
+							</p>
 						</div>
 					</div>
 				</div>
 			</div>
-			<div class="row sub-section">
-				<div class="sub-section-title">Our Products</div>
+			<div class="sub-section">
+				<div class="sub-section-title"></div>
 				<div class="sub-section-content">
 					<ul id="product-items">
-						<li class="p-item">
+						<li class="p-item col l3 m4 s12">
 							<div class="card">
 								<div class="card-image">
 									<img src="assets/img/landing-pg-img.jpg">
-									<span class="card-title">Card Title</span>
-									<a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
+									<a class="btn-floating halfway-fab waves-effect waves-light red" id="add-to-cart" data-product-id="1"><i class="fa fa-cart-plus"></i></a>
 								</div>
 								<div class="card-content p-item-desc">
-									<p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
+									<span class="card-title prod-name">Sev Puri <span class="prod-price"><i class="fa fa-rupee"></i>50</span></span>
+									<div class="prod-star">
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star-half"></i>
+									</div>
 								</div>
 							</div>
 						</li>
-						<li class="p-item">
+						<li class="p-item col l3 m4 s12">
 							<div class="card">
 								<div class="card-image">
 									<img src="assets/img/landing-pg-img.jpg">
-									<span class="card-title">Card Title</span>
-									<a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
+									<a class="btn-floating halfway-fab waves-effect waves-light red" id="add-to-cart" data-product-id="1"><i class="fa fa-cart-plus"></i></a>
 								</div>
 								<div class="card-content p-item-desc">
-									<p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
+									<span class="card-title prod-name">Sev Puri <span class="prod-price"><i class="fa fa-rupee"></i>50</span></span>
+									<div class="prod-star">
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star-half"></i>
+									</div>
 								</div>
 							</div>
 						</li>
-						<li class="p-item">
+						<li class="p-item col l3 m4 s12">
 							<div class="card">
 								<div class="card-image">
 									<img src="assets/img/landing-pg-img.jpg">
-									<span class="card-title">Card Title</span>
-									<a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
+									<a class="btn-floating halfway-fab waves-effect waves-light red" id="add-to-cart" data-product-id="1"><i class="fa fa-cart-plus"></i></a>
 								</div>
 								<div class="card-content p-item-desc">
-									<p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
+									<span class="card-title prod-name">Sev Puri <span class="prod-price"><i class="fa fa-rupee"></i>50</span></span>
+									<div class="prod-star">
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star-half"></i>
+									</div>
 								</div>
 							</div>
 						</li>
-
-						<li class="p-item">
+						<li class="p-item col l3 m4 s12">
 							<div class="card">
 								<div class="card-image">
 									<img src="assets/img/landing-pg-img.jpg">
-									<span class="card-title">Card Title</span>
-									<a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
+									<a class="btn-floating halfway-fab waves-effect waves-light red" id="add-to-cart" data-product-id="1"><i class="fa fa-cart-plus"></i></a>
 								</div>
 								<div class="card-content p-item-desc">
-									<p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
+									<span class="card-title prod-name">Sev Puri <span class="prod-price"><i class="fa fa-rupee"></i>50</span></span>
+									<div class="prod-star">
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star-half"></i>
+									</div>
 								</div>
 							</div>
 						</li>
-
-						<li class="p-item">
+						<li class="p-item col l3 m4 s12">
 							<div class="card">
 								<div class="card-image">
 									<img src="assets/img/landing-pg-img.jpg">
-									<span class="card-title">Card Title</span>
-									<a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
+									<a class="btn-floating halfway-fab waves-effect waves-light red" id="add-to-cart" data-product-id="1"><i class="fa fa-cart-plus"></i></a>
 								</div>
 								<div class="card-content p-item-desc">
-									<p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
+									<span class="card-title prod-name">Sev Puri <span class="prod-price"><i class="fa fa-rupee"></i>50</span></span>
+									<div class="prod-star">
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star-half"></i>
+									</div>
 								</div>
 							</div>
 						</li>
-
-						<li class="p-item">
-							<div class="card">
-								<div class="card-image">
-									<img src="assets/img/landing-pg-img.jpg">
-									<span class="card-title">Card Title</span>
-									<a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
-								</div>
-								<div class="card-content p-item-desc">
-									<p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
-								</div>
-							</div>
-						</li>
+						
 					</ul>
 				</div>
 			</div>
@@ -176,44 +216,44 @@
 		<div class="section-content">
 			<div class="row">
 				<div class="carousel">
-					<a class="carousel-item" href="#one!">
-						<div class="comment">
+					<a class="carousel-item comment" href="#one!">
+						<div class="comment-msg">
+							<span class="quote"><sup><i class="fa fa-quote-left"></i></sup></span>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.<span class="quote"><sup><i class="fa fa-quote-right"></i></sup></span>
+						</div>
+						<div class="commentor">
+							<span class="name">- John DOE</span>
+						</div>
+					</a>
+					<a class="carousel-item comment" href="#one!">
+						<div class="comment-msg">
+							<span class="quote"><sup><i class="fa fa-quote-left"></i></sup></span>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.<span class="quote"><sup><i class="fa fa-quote-right"></i></sup></span>
+						</div>
+						<div class="commentor">
+							<span class="name">- John DOE</span>
+						</div>
+					</a>
+					<a class="carousel-item comment" href="#one!">
+						<div class="comment-msg">
+							<span class="quote"><sup><i class="fa fa-quote-left"></i></sup></span>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.<span class="quote"><sup><i class="fa fa-quote-right"></i></sup></span>
+						</div>
+						<div class="commentor">
+							<span class="name">- John DOE</span>
+						</div>
+					</a>
+					<a class="carousel-item comment" href="#one!">
+						<div class="comment-msg">
 							<span class="quote"><sup><i class="fa fa-quote-left"></i></sup></span>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.<span class="quote"><sup><i class="fa fa-quote-right"></i></sup></span>
 						</div>
 						<div class="commentor">
 							<span class="name">John DOE</span>
 						</div>
 					</a>
-					<a class="carousel-item" href="#one!">
-						<div class="comment">
+					<a class="carousel-item comment" href="#one!">
+						<div class="comment-msg">
 							<span class="quote"><sup><i class="fa fa-quote-left"></i></sup></span>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.<span class="quote"><sup><i class="fa fa-quote-right"></i></sup></span>
 						</div>
 						<div class="commentor">
-							<span class="name">John DOE</span>
-						</div>
-					</a>
-					<a class="carousel-item" href="#one!">
-						<div class="comment">
-							<span class="quote"><sup><i class="fa fa-quote-left"></i></sup></span>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.<span class="quote"><sup><i class="fa fa-quote-right"></i></sup></span>
-						</div>
-						<div class="commentor">
-							<span class="name">John DOE</span>
-						</div>
-					</a>
-					<a class="carousel-item" href="#one!">
-						<div class="comment">
-							<span class="quote"><sup><i class="fa fa-quote-left"></i></sup></span>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.<span class="quote"><sup><i class="fa fa-quote-right"></i></sup></span>
-						</div>
-						<div class="commentor">
-							<span class="name">John DOE</span>
-						</div>
-					</a>
-					<a class="carousel-item" href="#one!">
-						<div class="comment">
-							<span class="quote"><sup><i class="fa fa-quote-left"></i></sup></span>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.<span class="quote"><sup><i class="fa fa-quote-right"></i></sup></span>
-						</div>
-						<div class="commentor">
-							<span class="name">John DOE</span>
+							<span class="name">- John DOE</span>
 						</div>
 					</a>
 				</div>
@@ -296,8 +336,12 @@
 							</div>
 						</div>
 						<div class="input-field col s12">
-							<input type="checkbox" class="validate" id="tc" name="tc" data-error=".errorChkBox" aria-required="true" aria-invalid="true" class="error" aria-describedby="chkbox-error"/>
-							<label for="tc">I Agree to all the Terms & Conditions* </label>
+							<p>
+								<label>
+									<input type="checkbox" />
+									<span>I Agree to all the Terms & Conditions* </span>
+								</label>
+							</p>
 							<div class="errorChkBox">
 								<div id="chkbox-error" class="error"></div>
 							</div>
@@ -334,7 +378,26 @@
 		    }, 1000);
 		});
 
+		function isUserLoggedIn(){
+			$.ajax({
+				url: 'php/RequestHandler.php?requestFor=usrLogInCheck',
+				dataType: 'json',
+				success: function(res){
+					if(res['status'] == 200){
+						$('.username').html(res['uname']);
+						$('.guest').addClass('hide');
+						$('.user').removeClass('hide');
+					}
+					else{
+						console.log(res);
+						$('#loginErr').show();
+					}
+				}
+			});
+		}
+
 		$(document).ready(function(){
+			isUserLoggedIn();
 			$('.sidenav').sidenav();
 			$('.dropdown-trigger').dropdown();
 			$('input.autocomplete').autocomplete({
@@ -348,6 +411,7 @@
 				indicators: true,
 				fullWidth: true
 			});
+			$('select').formSelect();
 			/*var slider = document.getElementById('price-slider');
 			noUiSlider.create(slider, {
 				start: [20, 80],
@@ -359,6 +423,12 @@
 					'max': 100
 				}
 			});*/
+
+			$('#add-to-cart').click(function(e){
+				var prod_id = $(this).data('product-id');
+				$('#prods-to-card-id').append("<li>" + prod_id + "</li>");
+				$('#prods-in-cart-count').text(parseInt($('#prods-in-cart-count').text())+1);
+			});
 
 			$('#loginModal').modal({
 				opacity: .6, 
@@ -393,8 +463,13 @@
 						processData: false,
 						contentType: false,
 						success: function(res){
-							if(res['status'] == 200)
-								window.location.href = 'home.php';
+							if(res['status'] == 200){
+								$('#loginModal').modal('close');
+								$('.username').html(res['uname']);
+								$('.guest').addClass('hide');
+								$('.user').removeClass('hide');
+								// console.log(res);
+							}
 							else{
 								console.log(res);
 								$('#loginErr').show();
@@ -417,8 +492,10 @@
 						contentType: false,
 						success: function(res){
 							if(res['status'] == 200){
-								// alert('user created sucesfuly.');
-								location.reload();
+								$('#signupModal').modal('close');
+								alert('user created sucesfuly.');
+								// location.reload();
+								console.log(res);
 							}else{
 								console.log(res['err']);
 							}

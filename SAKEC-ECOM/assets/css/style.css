@@ -5,18 +5,53 @@
 	}
 }
 
+#cart{
+    background: grey;
+    display: inline-block;
+    width: 5em;
+    height: 2em;
+    position: fixed;
+    z-index: 999;
+    right: 0;
+    border-top-left-radius: 25px;
+    border-bottom-left-radius: 25px;
+    top: 20%;
+    color: #fff;
+    font-weight: 600;
+    font-size: 1.5rem;
+    text-align: center;
+    line-height: 2;
+}
+
 a.head-link{
-	color: #212121;
-	font-size: 1.3rem;
+	color: #92969a;
+    font-size: 1.15rem;
+    font-weight: 600;
+    transition: all 0.3s ease; 
+}
+
+a.head-link:hover{
+	color: #495057;
+	background: none;
 }
 
 nav {
 	height: 78px;
 	padding: 5px;
+	color: #212121 !important;
 }
 
 .brand-logo{
-	color: #212121;
+	color: #212121 !important;
+	width: fit-content;
+}
+
+a.sidenav-trigger{
+	color: #212121 !important;
+}
+
+.navbar-fixed{
+	z-index: 1000 !important;
 }
 
 .section{
@@ -59,7 +94,14 @@ nav {
 }
 
 #login-or-signup{
-	/*font-size: 1rem;*/
+}
+
+#guest a{
+	transition: all 0.5s ease;
+}
+
+#guest a:hover{
+	box-shadow: none;
 }
 
 .section-title{
@@ -252,4 +294,68 @@ nav {
 
 .p-item-desc{
 	white-space: normal;
+}
+
+
+/*Reviews*/
+.comment{
+	width: 100% !important;
+	height: 80% !important;
+	display: inline-block;
+	padding-top: 5em;
+	text-align: center;
+	color: #212121;
+	font-weight: 600;
+	font-style: italic;
+	font-size: 1.25rem;
+	margin-bottom: 2em;
+}
+
+.indicators{
+	bottom: -3em;
+}
+
+
+.comment-msg{
+	width: 85%;
+	margin: auto;
+	line-height: -5;
+}
+
+.comment-msg .quote{
+	font-size: 2rem;
+}
+
+
+.quote sup{
+	top: -0.3em !important;
+}
+
+.commentor{
+	line-height: 5;
+	margin-bottom: 2em;
+}
+
+
+/*User account area*/
+.sidenav .guest,.sidenav .user{
+	margin: 0.5em;
+}
+
+.acc_area a{
+	margin-left: 0.5em;
+}
+
+.sidenav .acc_area{
+    background: #bdbdbd;
+    height: 6em;
+    display: table;
+    width: 100%;
+}
+
+.sidenav .acc_area .guest, .sidenav .acc_area .user{
+	display: table-cell;
+	margin: 0.5em;
+	vertical-align: middle;
+	text-align: center;
 }
