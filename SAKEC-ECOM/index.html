@@ -11,12 +11,31 @@
 </head>
 <body id="index">
 	<a href="javascript:" id="return-to-top"><i class="material-icons">navigation</i></a>
-	<a href="#cart" id="cart" class="blue lighten-1 hide user">
-		<i class="fa fa-shopping-cart"></i>
-		<span id="prods-in-cart-count">0</span>
-		<ul class="hide" id="prods-to-card-id">
-		</ul>
-	</a>
+	<div id="cart-block">
+		<a href="#cart" id="cart" class="blue lighten-1 show user">
+			<i class="fa fa-shopping-cart"></i>
+			<span id="prods-in-cart-count">0</span>
+			<ul class="hide" id="prods-to-card-id">
+			</ul>
+		</a><div id="cart-list" class="blue lighten-1" data-cart-visible="false" style="margin-right: -21em;">
+			<div id="cart-list-head">Cart details</div>
+			<ul class="cart-details">
+				<li class="cart-item template cart-item-template hide">
+					<div class="card">
+						<span class="cart-item-name">Sev Puri</span>
+						<span class="cart-item-priceNqty"><i class="fa fa-rupee"></i><span class="cip">50</span> x <span class="ciq">8</span></span>
+						<span class="cart-item-tcost"><i class="fa fa-rupee"></i> <span class="citp">100</span></span>
+						<a class="cart-item-remove" onClick="removeCartItem($(this))"><i class="material-icons red-text">delete</i></a>
+					</div>
+				</li>
+				
+			</ul>
+
+			<div id="cart-checkout" class="center">
+				<a class="btn white blue-text"><b>Checkout</b></a>
+			</div>
+		</div>
+	</div>
 	<header class="navbar-fixed z-depth-3" id="">
 		<nav class="white lighten-4" role="navigation">
 			<div class="nav-wrapper">
@@ -123,10 +142,18 @@
 							<div class="card">
 								<div class="card-image">
 									<img src="assets/img/landing-pg-img.jpg">
-									<a class="btn-floating halfway-fab waves-effect waves-light red" id="add-to-cart" data-product-id="1"><i class="fa fa-cart-plus"></i></a>
+									<div class="btn-floating halfway-fab waves-effect waves-light blue cart-btn">
+										<div class="cart-qty">
+											<a class=" incr-qty"><i class="fa fa-plus-circle"></i></a>
+											<span class="cart-qty-num">1</span>
+											<a class="decr-qty"><i class="fa fa-minus-circle"></i></a>
+										</div>
+										<a class="cart-add-btn" id="add-to-cart" data-product-id="1"><i class="fa fa-cart-plus red waves-effect waves-light z-depth-1"></i></a> 
+									</div>
+									<!-- <a class="btn-floating halfway-fab waves-effect waves-light red" id="add-to-cart" data-product-id="1"><i class="fa fa-cart-plus"></i></a> -->
 								</div>
 								<div class="card-content p-item-desc">
-									<span class="card-title prod-name">Sev Puri <span class="prod-price"><i class="fa fa-rupee"></i>50</span></span>
+									<span class="card-title prod-name" data-prod-name="Sev Puri" data-prod-price="50">Sev Puri <span class="prod-price"><i class="fa fa-rupee"></i>50</span></span>
 									<div class="prod-star">
 										<i class="fa fa-star"></i>
 										<i class="fa fa-star"></i>
@@ -204,7 +231,6 @@
 								</div>
 							</div>
 						</li>
-						
 					</ul>
 				</div>
 			</div>
@@ -266,7 +292,7 @@
 	</footer>
 	<!-- Modals -->
 	<div id="loginModal" class="modal">
-		<div class="modal-header"><br /><br />
+		<div class="modal-header">
 			<h2 class="center">Login</h2>
 		</div>
 		<div class="modal-content">
@@ -299,7 +325,7 @@
 	</div>
 
 	<div id="signupModal" class="modal">
-		<div class="modal-header"><br /><br />
+		<div class="modal-header">
 			<h2 class="center">Signup</h2>
 		</div>
 		<div class="modal-content">
@@ -346,7 +372,7 @@
 								<div id="chkbox-error" class="error"></div>
 							</div>
 						</div>
-						<div class="input-field col s12 center"><br /><br />
+						<div class="input-field col s12 center">
 							<button type="button" class="btn waves-effect waves-light blue" id="signupBtn" >Sign-Up</button>
 						</div>
 					</form>
@@ -396,6 +422,11 @@
 			});
 		}
 
+
+		function removeCartItem(e){
+			e.parents("li").remove();
+		};
+
 		$(document).ready(function(){
 			isUserLoggedIn();
 			$('.sidenav').sidenav();
@@ -424,10 +455,41 @@
 				}
 			});*/
 
+			$('#cart').click(function(){
+				if(!$('#cart-list').data('cartVisible'))
+					$('#cart-list').animate({marginRight: "0em"}, 1000);
+				else
+					$('#cart-list').animate({marginRight: "-21em"}, 1000);
+
+				$('#cart-list').data('cartVisible', !$('#cart-list').data('cartVisible'));
+			});
+
+			$('.incr-qty').click(function(e){
+				if($(this).next().attr('class') === "cart-qty-num")
+					$(this).next().html(parseInt($(this).next().html()) + 1);
+			});
+			$('.decr-qty').click(function(e){
+				if($(this).prev().html() === "1")
+					return false;
+
+				if($(this).prev().attr('class') === "cart-qty-num")
+					$(this).prev().html(parseInt($(this).prev().html()) - 1);
+			});
+
 			$('#add-to-cart').click(function(e){
+				cart_item = $('.cart-item-template').clone();
+				cart_item.find('cart-item-name').html($(this).parents('.card-image').next().find('.prod-name').data('prod-name'));
+				item_price = parseInt($('.cart-qty').parents('.card-image').next().children('.prod-name').data('prod-price'));
+				item_qty = parseInt($(this).prev().children('.cart-qty-num').html());
+				cart_item.find('.cip').html(item_price);
+				cart_item.find('.ciq').html(item_qty);
+				cart_item.find('.citp').html(item_price * item_qty);
+				cart_item.removeClass('template cart-item-template hide');
+				$('.cart-details').append(cart_item);
+
 				var prod_id = $(this).data('product-id');
 				$('#prods-to-card-id').append("<li>" + prod_id + "</li>");
-				$('#prods-in-cart-count').text(parseInt($('#prods-in-cart-count').text())+1);
+				$('#prods-in-cart-count').text(parseInt($('#prods-in-cart-count').text())+1);	
 			});
 
 			$('#loginModal').modal({
