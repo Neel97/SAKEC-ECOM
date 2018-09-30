@@ -5,24 +5,6 @@
 	}
 }
 
-#cart{
-    background: grey;
-    display: inline-block;
-    width: 5em;
-    height: 2em;
-    position: fixed;
-    z-index: 999;
-    right: 0;
-    border-top-left-radius: 25px;
-    border-bottom-left-radius: 25px;
-    top: 20%;
-    color: #fff;
-    font-weight: 600;
-    font-size: 1.5rem;
-    text-align: center;
-    line-height: 2;
-}
-
 a.head-link{
 	color: #92969a;
     font-size: 1.15rem;
@@ -95,6 +77,19 @@ a.sidenav-trigger{
 
 #login-or-signup{
 }
+
+#loginModal.modal{
+	width: 35% !important;
+	overflow: hidden;
+}
+
+#signupModal.modal{
+	width: 35% !important;
+	max-height: 89%;
+	overflow: hidden;
+	top: 5% !important;
+}
+
 
 #guest a{
 	transition: all 0.5s ease;
@@ -206,7 +201,7 @@ a.sidenav-trigger{
 }
 
 .modal-header {
-    height: 150px;
+    height: 78px;
     color: #fff;
     background: #616161;
     font-family: cursive;
@@ -358,4 +353,111 @@ a.sidenav-trigger{
 	margin: 0.5em;
 	vertical-align: middle;
 	text-align: center;
+}
+
+
+/*Cart*/
+#cart-block{
+	position: fixed;
+    z-index: 999;
+    right: 0;
+    /*float: right;*/
+    top: 20%;
+}
+
+#cart{
+    display: inline-block;
+    width: 5em;
+    height: 2em;
+    border-top-left-radius: 25px;
+    border-bottom-left-radius: 25px;
+    top: 20%;
+    color: #fff;
+    font-weight: 600;
+    font-size: 1.5rem;
+    text-align: center;
+    line-height: 2;
+    vertical-align: top;
+}
+
+#cart-list{
+	display: inline-block;
+	padding: 5px;
+	border-left: 0px;
+}
+
+#cart-list-head{
+	font-size: 2rem;
+	text-align: center;
+	color : #fff;
+}
+
+.cart-item{
+	width: 20em;
+}
+
+.cart-item .card{
+	padding: 1.1em;
+}
+
+.cart-item span{
+	display: inline-block;
+}
+
+.cart-item-name{
+	font-size: 1.35rem;
+	font-weight: 500;
+	width: 50%;
+}
+
+.cart-item-priceNqty, .cart-item-tcost{
+	width: 20%;
+	text-align: center;
+	font-weight: 500;
+}
+
+.cart-item-remove{
+	font-size: 1.5rem;
+    font-weight: 600;
+    cursor: pointer;
+    line-height: 1;
+    display: inline-block;
+    position: absolute;
+    top: 0.9em;
+}
+
+.cart-btn{
+	border-radius: 10px;
+	width: auto !important;
+	height: auto !important;
+	padding: 5px;
+	line-height: 1;
+	bottom: -27px !important;
+}
+
+.cart-btn:hover{
+	cursor: default;
+}
+
+.cart-qty{
+	display: inline;
+}
+
+.cart-qty a:hover{
+	cursor: pointer;
+}
+
+.cart-qty-num{
+	font-size: 1.8rem;
+	font-weight: 500;
+	padding: 0 3px 0 3px;
+	text-decoration: underline;
+}
+
+.cart-add-btn i{
+	border-radius: 50%;
+    padding: 6px;
+    margin-top: -8px;
+    margin-left: 10px;
+    line-height: inherit !important;
 }
